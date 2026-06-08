@@ -57,6 +57,8 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/SectorDashBoard" element={<SectorDashBoard />} />
           <Route path="/DPODashboard" element={<DPODashboard />} />
+          <Route path="/DPODashboard" element={<DPODashboard />} />
+          <Route path="/CDPODashboard" element={<CDPODashboard />} />
           {/* <Route path="/SectorDashBoard" element={
             <ProtectedRoute>
               <SupervisorDashBoard />
@@ -68,11 +70,11 @@ function AppContent() {
             </ProtectedRoute>
           } /> */}
          
-          <Route path="/CDPODashboard" element={
+          {/* <Route path="/CDPODashboard" element={
             <ProtectedRoute>
               <CDPODashboard />
             </ProtectedRoute>
-          } />
+          } /> */}
           <Route path="/DirectorDashboard" element={
             <ProtectedRoute>
               <DirectorDashboard />

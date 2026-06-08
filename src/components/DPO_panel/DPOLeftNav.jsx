@@ -79,6 +79,37 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
         path: "/DPODashboard",
         active: true,
       },
+
+       {
+        icon: <FaTachometerAlt />,
+        label: "Our Projects  ",
+        path: "#",
+   
+      },
+      {
+        icon: <FaTachometerAlt />,
+        label: "Our Sectors  ",
+        path: "#",
+     
+      },
+       {
+        icon: <FaTachometerAlt />,
+        label: "Our AWC Centers  ",
+        path: "#",
+      
+      },
+      {
+        icon: <FaTachometerAlt />,
+        label: "AWC Kalyan Kosh    ",
+        path: "#",
+      
+      },
+      {
+        icon: <FaTachometerAlt />,
+        label: " Mahalaxmi Beneficiary     ",
+        path: "#",
+   
+      },
     
      
   {
@@ -87,6 +118,16 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
     submenu: [
       {
         label: "Mahalakshmi Kit",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+       {
+        label: "Mahila Poshan",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+       {
+        label: "Bal Poshan",
         path: "#",
         icon: <FaPlusSquare />,
       },

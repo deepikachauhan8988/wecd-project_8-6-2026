@@ -27,11 +27,17 @@ import {
   FaBriefcase,
   FaGraduationCap,
   FaTasks,
-  FaClock
+  FaClock,
+  FaKey,
+  FaFemale,
+  FaChild,
+  FaBox,
+  FaLeaf,
+  FaGift
 } from "react-icons/fa";
 import axios from "axios";
 
-import "../../assets/css/cdpo.css";
+import "../../assets/css/supervisorleftnav.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   FaInfoCircle,
@@ -48,9 +54,11 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
   const location = useLocation();
 
   const [userRole, setUserRole] = useState(user ? user.role : null);
-  const [openSubmenu, setOpenSubmenu] = useState(null);
+  const [openSubmenu, setOpenSubmenu] = useState([]);
   const toggleSubmenu = (index) => {
-    setOpenSubmenu(openSubmenu === index ? null : index);
+    setOpenSubmenu((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   };
 
   // Automatically close sidebar when navigating on mobile or tablet views
@@ -70,36 +78,89 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
     }
   };
 
- const menuItems = [
-      {
-        icon: <FaTachometerAlt />,
-        label: "DashBoard",
-        path: "/CDPODashboard",
-        active: true,
-      },
-    
-     
-  {
-    icon: <FaUsers />,
-    label: "test",
-    submenu: [
-      {
-        label: "Registered Student",
+  const menuItems = [
+       {
+         icon: <FaTachometerAlt />,
+         label: "DashBoard",
+         path: "/CDPODashboard",
+         active: true,
+       },
+       {
+         icon: <FaKey />,
+         label: "Change Password",
+         path: "/CDPOChangePassword",
+       },
+       {
+         icon: <FaUsers />,
+         label: "State Schemes",
+         submenu: [
+           {
+             icon: <FaFemale />,
+             label: "Mahila Poshan",
         path: "#",
         icon: <FaPlusSquare />,
+        submenu: [
+          {
+            label: "Demand",
+            path: "#",
+          },
+          {
+            label: "Distribution",
+            path: "#",
+          },
+        ],
+      },
+      {
+        icon: <FaChild />,
+        label: "Bal Poshan",
+        path: "#",
+        icon: <FaPlusSquare />,
+        submenu: [
+          {
+            label: "Demand",
+            path: "#",
+          },
+          {
+            label: "Distribution",
+            path: "#",
+          },
+        ],
+      },
+      {
+        label: "Mahalaxmi Kit",
+        path: "#",
+        icon: <FaPlusSquare />,
+       submenu: [
+          {
+            label: "Demand",
+            path: "#",
+          },
+          {
+            label: "Distribution",
+            path: "#",
+          },
+        ],
+      },
+
+         {
+        label: "Anchal Amrit",
+        path: "#",
+        icon: <FaPlusSquare />,
+       submenu: [
+          {
+            label: "Demand",
+            path: "#",
+          },
+          {
+            label: "Distribution",
+            path: "#",
+          },
+        ],
       },
     ],
   },
-       {
-   icon: <FaClock />,
-   label: "Time Schedule",
-   path: "/SupervisorDashBoard",
- },
-      {
-        icon: <FaComments />,
-        label: "Send Query",
-        path: "/SupervisorDashBoard",
-      },
+
+    
       
        
       
@@ -117,7 +178,7 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
           {sidebarOpen ? (
             <div className="logo-container">
               <div className="logo">
-                  CDPO Panel
+                  District Panel
               </div>
             </div>
           ) : (
@@ -143,7 +204,7 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
           <span className="nav-icon">{item.icon}</span>
           <span className="nav-text">{item.label}</span>
           <span className="submenu-arrow">
-            {openSubmenu === index ? <FaChevronDown /> : <FaChevronRight />}
+            {openSubmenu.includes(index) ? <FaChevronDown /> : <FaChevronRight />}
           </span>
         </Nav.Link>
       ) : (
@@ -158,23 +219,58 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
       )}
 
       {/* Submenu */}
-      {item.submenu && (
-        <Collapse in={openSubmenu === index}>
-          <div className="submenu-container-user">
-            {item.submenu.map((subItem, subIndex) => (
-                 <Link
-                   key={subIndex}
-                   to={subItem.path}
-                   className="submenu-item-user nav-link"
-                   onClick={(e) => handleItemClick(e, subItem.path, false)}
-                 >
-                   <span className="submenu-icon">{subItem.icon}</span>
-                   <span className="nav-text br-text-sub">{subItem.label}</span>
-                 </Link>
-            ))}
-          </div>
-        </Collapse>
-      )}
+       {item.submenu && item.submenu.length > 0 && (
+         <Collapse in={openSubmenu.includes(index)}>
+           <div className="submenu-container-user">
+             {item.submenu.map((subItem, subIndex) => {
+               const subItemId = `${index}-${subIndex}`;
+               return (
+                 <div key={subIndex}>
+                   {subItem.submenu ? (
+                      <Nav.Link
+                        className="submenu-item-user nav-link"
+                        onClick={() => toggleSubmenu(subItemId)}
+                      >
+                        <span className="submenu-icon">{subItem.icon}</span>
+                        <span className="nav-text br-text-sub">{subItem.label}</span>
+                        <span className="submenu-arrow">
+                          {openSubmenu.includes(subItemId) ? <FaChevronDown /> : <FaChevronRight />}
+                        </span>
+                      </Nav.Link>
+                    ) : (
+                      <Link
+                        to={subItem.path}
+                        className="submenu-item-user nav-link"
+                        onClick={(e) => handleItemClick(e, subItem.path, false)}
+                      >
+                        <span className="submenu-icon">{subItem.icon}</span>
+                        <span className="nav-text br-text-sub">{subItem.label}</span>
+                      </Link>
+                    )}
+                    {/* Nested submenu collapse */}
+                    {subItem.submenu && (
+                      <Collapse in={openSubmenu.includes(subItemId)}>
+                       <div className="submenu-container-user">
+                         {subItem.submenu.map((nestedItem, nestedIndex) => (
+                           <Link
+                             key={nestedIndex}
+                             to={nestedItem.path}
+                             className="submenu-item-user nav-link"
+                             onClick={(e) => handleItemClick(e, nestedItem.path, false)}
+                           >
+                             <span className="submenu-icon">{nestedItem.icon}</span>
+                             <span className="nav-text br-text-sub">{nestedItem.label}</span>
+                           </Link>
+                         ))}
+                       </div>
+                     </Collapse>
+                   )}
+                 </div>
+               );
+             })}
+           </div>
+         </Collapse>
+       )}
     </div>
   ))}
 
@@ -224,7 +320,7 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-text br-nav-text-mob">{item.label}</span>
               <span className="submenu-arrow">
-                {openSubmenu === index ? <FaChevronDown /> : <FaChevronRight />}
+            {openSubmenu.includes(index) ? <FaChevronDown /> : <FaChevronRight />}
               </span>
             </Nav.Link>
           ) : (
@@ -238,19 +334,51 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
              </Link>
           )}
 
-          {item.submenu && (
-            <Collapse in={openSubmenu === index}>
+          {item.submenu && item.submenu.length > 0 && (
+            <Collapse in={openSubmenu.includes(index)}>
               <div className="submenu-container-user">
-                {item.submenu.map((subItem, subIndex) => (
-                   <Link
-                     key={subIndex}
-                     to={subItem.path}
-                     className="submenu-item nav-link"
-                     onClick={(e) => handleItemClick(e, subItem.path, false)}
-                   >
-                     <span className="nav-text">{subItem.label}</span>
-                   </Link>
-                ))}
+                {item.submenu.map((subItem, subIndex) => {
+                  const subItemId = `${index}-${subIndex}`;
+                  return (
+                    <div key={subIndex}>
+                      {subItem.submenu ? (
+                          <Nav.Link
+                            className="submenu-item-user nav-link"
+                            onClick={() => toggleSubmenu(subItemId)}
+                          >
+                            <span className="nav-text">{subItem.label}</span>
+                            <span className="submenu-arrow">
+                              {openSubmenu.includes(subItemId) ? <FaChevronDown /> : <FaChevronRight />}
+                            </span>
+                          </Nav.Link>
+                      ) : (
+                        <Link
+                          to={subItem.path}
+                          className="submenu-item nav-link"
+                          onClick={(e) => handleItemClick(e, subItem.path, false)}
+                        >
+                          <span className="nav-text">{subItem.label}</span>
+                        </Link>
+                      )}
+                      {subItem.submenu && (
+                        <Collapse in={openSubmenu.includes(Number(subItemId))}>
+                          <div className="submenu-container-user">
+                            {subItem.submenu.map((nestedItem, nestedIndex) => (
+                              <Link
+                                key={nestedIndex}
+                                to={nestedItem.path}
+                                className="submenu-item nav-link"
+                                onClick={(e) => handleItemClick(e, nestedItem.path, false)}
+                              >
+                                <span className="nav-text">{nestedItem.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </Collapse>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </Collapse>
           )}
