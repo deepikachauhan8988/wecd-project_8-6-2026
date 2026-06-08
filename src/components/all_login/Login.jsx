@@ -30,63 +30,67 @@ const Login = () => {
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedSector, setSelectedSector] = useState('');
-  const [supervisorProjectsData, setSupervisorProjectsData] = useState([]);
+  const [SectorProjectsData, setSectorProjectsData] = useState([]);
 
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // Content in Hindi - Government Portal Style (consistent with Home.jsx)
+  // Content for Government Portal Style (consistent with Home.jsx)
   const content = {
-    brandSubtitle: "आज का कौशल, कल का सशक्तिकरण",
+    brandSubtitle: "Today's Skill, Tomorrow's Empowerment",
    
-    roleLabel: "अपनी भूमिका चुनें",
-    userIdLabel: "लॉगिन टाइप",
-    userIdPlaceholder: "लॉगिन प्रकार दर्ज करें",
-    passwordLabel: "पासवर्ड",
-    districtLabel: "जिला चुनें",
-    projectLabel: "परियोजना चुनें",
-    sectorLabel: "सेक्टर चुनें",
-    anganwadiLabel: "आंगनबाड़ी केंद्र चुनें",
-    passwordPlaceholder: "पासवर्ड दर्ज करें",
-    rememberMe: "मुझे याद रखें",
-    signIn: "साइन इन करें",
-    signingIn: "साइन इन हो रहा है...",
+    roleLabel: "Select Your Role",
+    userIdLabel: "Login Type",
+    userIdPlaceholder: "Enter Login Type",
+    passwordLabel: "Password",
+    districtLabel: "Select District",
+    projectLabel: "Select Project",
+    sectorLabel: "Select Sector",
+    anganwadiLabel: "Select Center Login",
+    passwordPlaceholder: "Enter Password",
+    rememberMe: "Remember Me",
+    signIn: "Sign In",
+    signingIn: "Signing In...",
     
-    learnTitle: "सीखें",
-    learnDesc: "गुणवत्तापूर्ण शिक्षा और नए पाठ्यक्रमों तक पहुंच प्राप्त करें",
-    growTitle: "बढ़ें",
-    growDesc: "अपनी शैक्षणिक प्रगति को ट्रैक करें",
-    succeedTitle: "सफल हों",
-    succeedDesc: "कक्षा 9 से 12 तक अपना करियर बनाएं",
+    learnTitle: "Learn",
+    learnDesc: "Access quality education and new curricula",
+    growTitle: "Grow",
+    growDesc: "Track your educational progress",
+    succeedTitle: "Succeed",
+    succeedDesc: "Build your career from class 9 to 12",
+    welcomeTitle: "Welcome",
+    welcomeSubtitle: "Sign in to continue to your dashboard",
+    needAccess: "Need access?",
+    contactAdmin: "Contact Admin",
     errors: {
-      userIdRequired: "यूजर आईडी / फोन आवश्यक है",
-      passwordRequired: "पासवर्ड आवश्यक है",
-      loginFailed: "लॉगिन विफल रहा। कृपया पुनः प्रयास करें।",
-      loginSuccess: "लॉगिन सफल!",
-      invalidCredentials: "गलत क्रेडेंशियल। कृपया पुनः प्रयास करें।",
-      userNotFound: "उपयोगकर्ता नहीं मिला।",
-      defaultPasswordNotAllowed: "डिफ़ॉल्ट पासवर्ड की अनुमति नहीं है। कृपया अपना पासवर्ड रीसेट करें।"
+      userIdRequired: "User ID / Phone is required",
+      passwordRequired: "Password is required",
+      loginFailed: "Login failed. Please try again.",
+      loginSuccess: "Login Successful!",
+      invalidCredentials: "Invalid credentials. Please try again.",
+      userNotFound: "User not found.",
+      defaultPasswordNotAllowed: "Default password not allowed. Please reset your password."
     },
     resetPassword: {
-      title: "पासवर्ड रीसेट करें",
-      newPasswordLabel: "नया पासवर्ड",
-      confirmPasswordLabel: "पासवर्ड की पुष्टि करें",
-      resetButton: "पासवर्ड रीसेट करें",
-      resettingButton: "रीसेट हो रहा है...",
-      passwordMismatch: "पासवर्ड मेल नहीं खाते।",
-      resetSuccess: "पासवर्ड सफलतापूर्वक रीसेट किया गया।",
-      resetFailed: "पासवर्ड रीसेट विफल रहा। कृपया पुनः प्रयास करें।"
+      title: "Reset Password",
+      newPasswordLabel: "New Password",
+      confirmPasswordLabel: "Confirm Password",
+      resetButton: "Reset Password",
+      resettingButton: "Resetting...",
+      passwordMismatch: "Passwords do not match.",
+      resetSuccess: "Password reset successfully.",
+      resetFailed: "Password reset failed. Please try again."
     }
   };
 
   const roleOptions = useMemo(() => {
     return [
-      { value: 'director', label: 'निदेशक', icon: 'bi-person-workspace' },
-      { value: 'it-cell', label: 'आईटी सेल', icon: 'bi-cpu' },
-      { value: 'dpo', label: 'जिला कार्यक्रम अधिकारी', icon: 'bi-briefcase' },
-      { value: 'cdpo', label: 'परियोजना कार्यक्रम अधिकारी', icon: 'bi-person-badge' },
-      { value: 'supervisor', label: 'सुपरवाईजर', icon: 'bi-person-check' },
-      { value: 'anganwadi', label: 'आंगनबाड़ी केन्द्र', icon: 'bi-house-door' },
+      { value: 'director', label: 'Directorate', icon: 'bi-person-workspace' },
+      { value: 'it-cell', label: 'IT Cell', icon: 'bi-cpu' },
+      { value: 'dpo', label: 'DPO', icon: 'bi-briefcase' },
+      { value: 'cdpo', label: 'CDPO', icon: 'bi-person-badge' },
+      { value: 'Sector', label: 'Sector', icon: 'bi-person-check' },
+      { value: 'anganwadi', label: 'Anganwadi Center', icon: 'bi-house-door' },
     ];
   }, []);
 
@@ -118,13 +122,13 @@ const Login = () => {
        setProjects([]);
        setSectors([]);
        setAnganwadis([]);
-       setSupervisorProjectsData([]);
+       setSectorProjectsData([]);
      }
    };
 
   // Fetching logic for Anganwadi dropdowns
   useEffect(() => {
-    if (['anganwadi', 'supervisor', 'cdpo', 'dpo'].includes(formData.role)) {
+    if (['anganwadi', 'Sector', 'cdpo', 'dpo'].includes(formData.role)) {
       fetchDistricts();
     }
   }, [formData.role]);
@@ -133,7 +137,7 @@ const Login = () => {
     let url = '';
     if (formData.role === 'anganwadi') {
       url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/anganwadi-dropdown/';
-    } else if (formData.role === 'supervisor') {
+    } else if (formData.role === 'Sector') {
       url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/sector-dropdown/';
     } else if (formData.role === 'cdpo') {
       url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/cdpo-dropdown/';
@@ -153,7 +157,7 @@ const Login = () => {
     setSelectedSector('');
     setFormData(prev => ({ ...prev, email_or_phone: '' }));
     setProjects([]); setSectors([]); setAnganwadis([]);
-    setSupervisorProjectsData([]);
+    setSectorProjectsData([]);
 
     if (district) {
       if (formData.role === 'dpo') {
@@ -167,7 +171,7 @@ const Login = () => {
       let url = '';
       if (formData.role === 'anganwadi') {
         url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/anganwadi-dropdown/?district=${district}`;
-      } else if (formData.role === 'supervisor') {
+      } else if (formData.role === 'Sector') {
         url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/sector-dropdown/?district=${district}`;
       } else if (formData.role === 'cdpo') {
         url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/cdpo-dropdown/?district=${district}`;
@@ -176,8 +180,8 @@ const Login = () => {
       try {
         const res = await axios.get(url);
         if (res.data.success) {
-          if (formData.role === 'supervisor') {
-            setSupervisorProjectsData(res.data.data);
+          if (formData.role === 'Sector') {
+            setSectorProjectsData(res.data.data);
             setProjects(res.data.data.map(item => ({ project: item.project_code })));
           } else if (formData.role === 'cdpo') {
             setProjects(res.data.data.map(item => ({ project: item.project_name })));
@@ -196,9 +200,9 @@ const Login = () => {
     setSectors([]); setAnganwadis([]);
 
     if (project) {
-      if (formData.role === 'supervisor') {
+      if (formData.role === 'Sector') {
         setFormData(prev => ({ ...prev, email_or_phone: '' }));
-        const projData = supervisorProjectsData.find(p => p.project_code === project);
+        const projData = SectorProjectsData.find(p => p.project_code === project);
         if (projData) setSectors(projData.sectors);
       } else if (formData.role === 'cdpo') {
         setFormData(prev => ({ ...prev, email_or_phone: project }));
@@ -219,8 +223,8 @@ const Login = () => {
     setSelectedSector(sector);
     setAnganwadis([]);
 
-    if (formData.role === 'supervisor') {
-      // For supervisor, the selected sector name is the username
+    if (formData.role === 'Sector') {
+      // For Sector, the selected sector name is the username
       setFormData(prev => ({ ...prev, email_or_phone: sector }));
     } else {
       setFormData(prev => ({ ...prev, email_or_phone: '' }));
@@ -255,8 +259,8 @@ const Login = () => {
       case 'cdpo':
         navigate('/CDPODashboard');
         break;
-      case 'supervisor':
-        navigate('/SupervisorDashBoard');
+      case 'Sector':
+        navigate('/SectorDashBoard');
         break;
       case 'anganwadi':
         navigate('/AnganwadiDashboard');
@@ -389,7 +393,7 @@ const Login = () => {
                 </div>
               )}
 
-              {['anganwadi', 'supervisor', 'cdpo', 'dpo'].includes(formData.role) ? (
+              {['anganwadi', 'Sector', 'cdpo', 'dpo'].includes(formData.role) ? (
                 <>
                   <div className="form-group">
                     <label>{content.districtLabel}</label>
