@@ -1185,7 +1185,7 @@ const [candidates, setCandidates] = useState([]);
                <Col md={6}>
                  <strong>Aadhar File:</strong>{' '}
                  {selectedCandidateDetails.aadhar_file ? (
-                   <a href={`https://mahadevaaya.com/golden100days/golden100days_backend${selectedCandidateDetails.aadhar_file}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-primary">
+                   <a href={`https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend${selectedCandidateDetails.aadhar_file}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-primary">
                      <i className="bi bi-eye"></i> View
                    </a>
                  ) : '-'}
@@ -1193,7 +1193,7 @@ const [candidates, setCandidates] = useState([]);
                <Col md={6}>
                  <strong>PAN File:</strong>{' '}
                  {selectedCandidateDetails.pan_file ? (
-                   <a href={`https://mahadevaaya.com/golden100days/golden100days_backend${selectedCandidateDetails.pan_file}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-primary">
+                   <a href={`https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend${selectedCandidateDetails.pan_file}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-primary">
                      <i className="bi bi-eye"></i> View
                    </a>
                  ) : '-'}

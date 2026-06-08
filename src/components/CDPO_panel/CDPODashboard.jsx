@@ -167,7 +167,7 @@ const CDPODashboard = () => {
                         const paginatedCandidates = candidates.slice(startIndex, endIndex);
 
                         return paginatedCandidates.map((c, index) => {
-                          const baseUrl = "https://mahadevaaya.com/golden100days/golden100days_backend";
+                          const baseUrl = "https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend";
                           const aadharFile = c.aadhar_file ? `${baseUrl}${c.aadhar_file}` : "-";
                           const panFile = c.pan_file ? `${baseUrl}${c.pan_file}` : "-";
 
