@@ -13,16 +13,16 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import Home from './components/pages/Home';
 import { AuthProvider, useAuth } from './components/all_login/AuthContext';
-import SupervisorDashBoard from "./components/supervisor_panel/SupervisorDashBoard";
+import SupervisorDashBoard from "./components/sector_panel/SectorDashBoard";
 import NavBar from './components/nav_bar/NavBar';
 import Login from "./components/all_login/Login";
 import DPODashboard from "./components/DPO_panel/DPODashboard";
-import AnganwadiDashboard from "./components/anganwadi_panel/AnganwadiDashboard";
+
 import CDPODashboard from "./components/CDPO_panel/CDPODashboard";
 import DirectorDashboard from "./components/director_panel/DirectorDashboard";
 import Footer from "./components/footer/Footer";
-import ITCellDashboard from "./components/IT_cell_panel/ITCellDashboard";
-import HcmData from "./components/pages/HcmData";
+
+
 
 //  Protected Route component
 const ProtectedRoute = ({ children }) => {
@@ -45,8 +45,8 @@ const ProtectedRoute = ({ children }) => {
 function AppContent() {
   const location = useLocation();
 
-  const hideNavbarRoutes = ["/SupervisorDashBoard", "/DPODashboard", "/AnganwadiDashboard", "/CDPODashboard", "/DirectorDashboard", "/ITCellDashboard"];
-  const hideFooterRoutes = ["/SupervisorDashBoard", "/DPODashboard", "/AnganwadiDashboard", "/CDPODashboard", "/DirectorDashboard", "/ITCellDashboard"];
+  const hideNavbarRoutes = ["/SectorDashBoard", "/DPODashboard",  "/CDPODashboard", "/DirectorDashboard"];
+  const hideFooterRoutes = ["/SectorDashBoard", "/DPODashboard",  "/CDPODashboard", "/DirectorDashboard"];
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
   const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
 
@@ -55,7 +55,7 @@ function AppContent() {
       {!shouldHideNavbar && <NavBar />}
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/SupervisorDashBoard" element={
+          <Route path="/SectorDashBoard" element={
             <ProtectedRoute>
               <SupervisorDashBoard />
             </ProtectedRoute>
@@ -65,11 +65,7 @@ function AppContent() {
               <DPODashboard />
             </ProtectedRoute>
           } />
-          <Route path="/AnganwadiDashboard" element={
-            <ProtectedRoute>
-              <AnganwadiDashboard />
-            </ProtectedRoute>
-          } />
+         
           <Route path="/CDPODashboard" element={
             <ProtectedRoute>
               <CDPODashboard />
@@ -80,13 +76,9 @@ function AppContent() {
               <DirectorDashboard />
             </ProtectedRoute>
           } />
-            <Route path="/ITCellDashboard" element={
-            <ProtectedRoute>
-              <ITCellDashboard />
-            </ProtectedRoute>
-          } />
+           
           <Route path="/Login" element={<Login />} />
-          <Route path="/HcmData" element={<HcmData />} />
+  
          
           
         </Routes>
