@@ -56,16 +56,17 @@ function AppContent() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/SectorDashBoard" element={<SectorDashBoard />} />
+          <Route path="/DPODashboard" element={<DPODashboard />} />
           {/* <Route path="/SectorDashBoard" element={
             <ProtectedRoute>
               <SupervisorDashBoard />
             </ProtectedRoute>
           } /> */}
-          <Route path="/DPODashboard" element={
+          {/* <Route path="/DPODashboard" element={
             <ProtectedRoute>
               <DPODashboard />
             </ProtectedRoute>
-          } />
+          } /> */}
          
           <Route path="/CDPODashboard" element={
             <ProtectedRoute>

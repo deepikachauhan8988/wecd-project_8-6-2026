@@ -36,7 +36,7 @@ const [formData, setFormData] = useState({
 
   // Content for Government Portal Style (consistent with Home.jsx)
   const content = {
-    brandSubtitle: "Today's Skill, Tomorrow's Empowerment",
+  
    
     roleLabel: "Select Your Role",
     userIdLabel: "Login Type",

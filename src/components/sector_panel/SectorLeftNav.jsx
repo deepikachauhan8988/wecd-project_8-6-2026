@@ -12,23 +12,27 @@ import {
   FaImage,
   FaTools,
   FaComments,
-  FaCube,
-  FaProjectDiagram,
-  FaServer,
-  FaUserCircle,
-  FaCalendarAlt,
-  FaPlusSquare,
-  FaEdit,
-  FaMusic,
-  FaGlassCheers,
-  FaIndustry,
-  FaQuestionCircle,
-  FaTrophy,
-  FaBriefcase,
-  FaGraduationCap,
-  FaTasks,
-  FaClock
-} from "react-icons/fa";
+FaCube,
+   FaProjectDiagram,
+   FaServer,
+   FaUserCircle,
+   FaCalendarAlt,
+   FaPlusSquare,
+   FaEdit,
+   FaMusic,
+   FaGlassCheers,
+   FaIndustry,
+   FaQuestionCircle,
+   FaTrophy,
+   FaBriefcase,
+   FaGraduationCap,
+   FaTasks,
+   FaClock,
+   FaFemale,
+   FaChild,
+   FaTint,
+   FaBox
+   } from "react-icons/fa";
 import axios from "axios";
 
 import "../../assets/css/supervisorleftnav.css";
@@ -78,63 +82,63 @@ const SupervisorLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, on
         active: true,
       },
        {
-        icon: <FaTachometerAlt />,
-        label: "Change Password",
-        path: "/SectorPassword",
+icon: <FaEdit />,
+         label: "Change Password",
+         path: "/SectorPassword",
        
       },
        {
-        icon: <FaTachometerAlt />,
-        label: "हमारे आंगनवाड़ी केंद्र ",
-        path: "/OurAwc",
+icon: <FaBuilding />,
+         label: "हमारे आंगनवाड़ी केंद्र ",
+         path: "/OurAwc",
        
       },
     
      
-  {
-    icon: <FaUsers />,
-    label: "मांग दर्ज करें ",
-    submenu: [
-      {
-        label: "महिला पोषण",
-        path: "#",
-        icon: <FaPlusSquare />,
-      },
+{
+     icon: <FaTasks />,
+     label: "मांग दर्ज करें ",
+     submenu: [
        {
-        label: "बाल पोषण",
-        path: "#",
-        icon: <FaPlusSquare />,
-      },
-       {
-        label: "अंचल अमृत",
-        path: "#",
-        icon: <FaPlusSquare />,
-      },
-    ],
-  },
+         label: "महिला पोषण",
+         path: "#",
+         icon: <FaFemale />,
+       },
+        {
+         label: "बाल पोषण",
+         path: "#",
+         icon: <FaChild />,
+       },
+        {
+         label: "अंचल अमृत",
+         path: "#",
+         icon: <FaTint />,
+       },
+     ],
+   },
       
      
-    {
-    icon: <FaUsers />,
-    label: "स्टॉक मैनेजर(वितरण) ",
-    submenu: [
-      {
-        label: "महिला पोषण",
-        path: "#",
-        icon: <FaPlusSquare />,
-      },
+{
+      icon: <FaServer />,
+      label: "स्टॉक मैनेजर(वितरण) ",
+      submenu: [
        {
-        label: "बाल पोषण",
-        path: "#",
-        icon: <FaPlusSquare />,
-      },
-       {
-        label: "महालक्ष्मी किट",
-        path: "#",
-        icon: <FaPlusSquare />,
-      },
-    ],
-  },    
+         label: "महिला पोषण",
+         path: "#",
+         icon: <FaFemale />,
+       },
+        {
+         label: "बाल पोषण",
+         path: "#",
+         icon: <FaChild />,
+       },
+        {
+         label: "महालक्ष्मी किट",
+         path: "#",
+         icon: <FaBox />,
+       },
+     ],
+   },
       
      ];
 
@@ -150,7 +154,7 @@ const SupervisorLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, on
           {sidebarOpen ? (
             <div className="logo-container">
               <div className="logo">
-                  Super visor Panel
+                  Sector Panel
               </div>
             </div>
           ) : (

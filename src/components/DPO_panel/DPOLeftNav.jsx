@@ -48,9 +48,11 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
   const location = useLocation();
 
   const [userRole, setUserRole] = useState(user ? user.role : null);
-  const [openSubmenu, setOpenSubmenu] = useState(null);
+  const [openSubmenu, setOpenSubmenu] = useState([]);
   const toggleSubmenu = (index) => {
-    setOpenSubmenu(openSubmenu === index ? null : index);
+    setOpenSubmenu((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   };
 
   // Automatically close sidebar when navigating on mobile or tablet views
@@ -81,24 +83,77 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
      
   {
     icon: <FaUsers />,
-    label: "test",
+    label: "Demand Request",
     submenu: [
       {
-        label: "Registered Student",
+        label: "Mahalakshmi Kit",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+      {
+        label: "Anchal Amrit",
         path: "#",
         icon: <FaPlusSquare />,
       },
     ],
   },
-       {
-   icon: <FaClock />,
-   label: "Time Schedule",
-   path: "/SupervisorDashBoard",
- },
+
+   {
+    icon: <FaUsers />,
+    label: "Demand & Distribution",
+    submenu: [
+      {
+        label: "Mahila Poshan",
+        path: "#",
+        icon: <FaPlusSquare />,
+        submenu: [
+          {
+            label: "Project Wise",
+            path: "#",
+          },
+          {
+            label: "District Wise",
+            path: "#",
+          },
+        ],
+      },
+      {
+        label: "Bal Poshan",
+        path: "#",
+        icon: <FaPlusSquare />,
+        submenu: [
+          {
+            label: "Project Wise",
+            path: "#",
+          },
+          {
+            label: "District Wise",
+            path: "#",
+          },
+        ],
+      },
+      {
+        label: "Mahalaxmi Kit",
+        path: "#",
+        icon: <FaPlusSquare />,
+        submenu: [
+          {
+            label: "Project Wise",
+            path: "#",
+          },
+          {
+            label: "District Wise",
+            path: "#",
+          },
+        ],
+      },
+    ],
+  },
+
       {
         icon: <FaComments />,
-        label: "Send Query",
-        path: "/SupervisorDashBoard",
+        label: "Employee Details",
+        path: "#",
       },
       
        
@@ -117,7 +172,7 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
           {sidebarOpen ? (
             <div className="logo-container">
               <div className="logo">
-                  DPO Panel
+                  District Panel
               </div>
             </div>
           ) : (
@@ -143,7 +198,7 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
           <span className="nav-icon">{item.icon}</span>
           <span className="nav-text">{item.label}</span>
           <span className="submenu-arrow">
-            {openSubmenu === index ? <FaChevronDown /> : <FaChevronRight />}
+            {openSubmenu.includes(index) ? <FaChevronDown /> : <FaChevronRight />}
           </span>
         </Nav.Link>
       ) : (
@@ -158,23 +213,58 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
       )}
 
       {/* Submenu */}
-      {item.submenu && (
-        <Collapse in={openSubmenu === index}>
-          <div className="submenu-container-user">
-            {item.submenu.map((subItem, subIndex) => (
-                 <Link
-                   key={subIndex}
-                   to={subItem.path}
-                   className="submenu-item-user nav-link"
-                   onClick={(e) => handleItemClick(e, subItem.path, false)}
-                 >
-                   <span className="submenu-icon">{subItem.icon}</span>
-                   <span className="nav-text br-text-sub">{subItem.label}</span>
-                 </Link>
-            ))}
-          </div>
-        </Collapse>
-      )}
+       {item.submenu && item.submenu.length > 0 && (
+         <Collapse in={openSubmenu.includes(index)}>
+           <div className="submenu-container-user">
+             {item.submenu.map((subItem, subIndex) => {
+               const subItemId = `${index}-${subIndex}`;
+               return (
+                 <div key={subIndex}>
+                   {subItem.submenu ? (
+                      <Nav.Link
+                        className="submenu-item-user nav-link"
+                        onClick={() => toggleSubmenu(subItemId)}
+                      >
+                        <span className="submenu-icon">{subItem.icon}</span>
+                        <span className="nav-text br-text-sub">{subItem.label}</span>
+                        <span className="submenu-arrow">
+                          {openSubmenu.includes(subItemId) ? <FaChevronDown /> : <FaChevronRight />}
+                        </span>
+                      </Nav.Link>
+                    ) : (
+                      <Link
+                        to={subItem.path}
+                        className="submenu-item-user nav-link"
+                        onClick={(e) => handleItemClick(e, subItem.path, false)}
+                      >
+                        <span className="submenu-icon">{subItem.icon}</span>
+                        <span className="nav-text br-text-sub">{subItem.label}</span>
+                      </Link>
+                    )}
+                    {/* Nested submenu collapse */}
+                    {subItem.submenu && (
+                      <Collapse in={openSubmenu.includes(subItemId)}>
+                       <div className="submenu-container-user">
+                         {subItem.submenu.map((nestedItem, nestedIndex) => (
+                           <Link
+                             key={nestedIndex}
+                             to={nestedItem.path}
+                             className="submenu-item-user nav-link"
+                             onClick={(e) => handleItemClick(e, nestedItem.path, false)}
+                           >
+                             <span className="submenu-icon">{nestedItem.icon}</span>
+                             <span className="nav-text br-text-sub">{nestedItem.label}</span>
+                           </Link>
+                         ))}
+                       </div>
+                     </Collapse>
+                   )}
+                 </div>
+               );
+             })}
+           </div>
+         </Collapse>
+       )}
     </div>
   ))}
 
@@ -224,7 +314,7 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-text br-nav-text-mob">{item.label}</span>
               <span className="submenu-arrow">
-                {openSubmenu === index ? <FaChevronDown /> : <FaChevronRight />}
+            {openSubmenu.includes(index) ? <FaChevronDown /> : <FaChevronRight />}
               </span>
             </Nav.Link>
           ) : (
@@ -238,19 +328,51 @@ const DPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavClic
              </Link>
           )}
 
-          {item.submenu && (
-            <Collapse in={openSubmenu === index}>
+          {item.submenu && item.submenu.length > 0 && (
+            <Collapse in={openSubmenu.includes(index)}>
               <div className="submenu-container-user">
-                {item.submenu.map((subItem, subIndex) => (
-                   <Link
-                     key={subIndex}
-                     to={subItem.path}
-                     className="submenu-item nav-link"
-                     onClick={(e) => handleItemClick(e, subItem.path, false)}
-                   >
-                     <span className="nav-text">{subItem.label}</span>
-                   </Link>
-                ))}
+                {item.submenu.map((subItem, subIndex) => {
+                  const subItemId = `${index}-${subIndex}`;
+                  return (
+                    <div key={subIndex}>
+                      {subItem.submenu ? (
+                          <Nav.Link
+                            className="submenu-item-user nav-link"
+                            onClick={() => toggleSubmenu(subItemId)}
+                          >
+                            <span className="nav-text">{subItem.label}</span>
+                            <span className="submenu-arrow">
+                              {openSubmenu.includes(subItemId) ? <FaChevronDown /> : <FaChevronRight />}
+                            </span>
+                          </Nav.Link>
+                      ) : (
+                        <Link
+                          to={subItem.path}
+                          className="submenu-item nav-link"
+                          onClick={(e) => handleItemClick(e, subItem.path, false)}
+                        >
+                          <span className="nav-text">{subItem.label}</span>
+                        </Link>
+                      )}
+                      {subItem.submenu && (
+                        <Collapse in={openSubmenu.includes(Number(subItemId))}>
+                          <div className="submenu-container-user">
+                            {subItem.submenu.map((nestedItem, nestedIndex) => (
+                              <Link
+                                key={nestedIndex}
+                                to={nestedItem.path}
+                                className="submenu-item nav-link"
+                                onClick={(e) => handleItemClick(e, nestedItem.path, false)}
+                              >
+                                <span className="nav-text">{nestedItem.label}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </Collapse>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </Collapse>
           )}
