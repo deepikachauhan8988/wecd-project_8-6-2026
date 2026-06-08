@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-function SupervisorHeader({ toggleSidebar }) {
+function SectorHeader({ toggleSidebar }) {
   const navigate = useNavigate();
 
   // State to track if the API itself failed (404/500)
@@ -36,7 +36,7 @@ function SupervisorHeader({ toggleSidebar }) {
   const [imageError, setImageError] = useState(false);
 
   const getDisplayName = () => {
-    return userDetails.full_name || "Supervisor";
+    return userDetails.full_name || "Sector";
   };
 
   const getUserPhotoUrl = () => {
@@ -132,4 +132,4 @@ function SupervisorHeader({ toggleSidebar }) {
     );
   }
   
-  export default SupervisorHeader;
+  export default SectorHeader;

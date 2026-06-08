@@ -74,34 +74,67 @@ const SupervisorLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, on
       {
         icon: <FaTachometerAlt />,
         label: "DashBoard",
-        path: "/SupervisorDashBoard",
+        path: "/SectorDashBoard",
         active: true,
+      },
+       {
+        icon: <FaTachometerAlt />,
+        label: "Change Password",
+        path: "/SectorPassword",
+       
+      },
+       {
+        icon: <FaTachometerAlt />,
+        label: "हमारे आंगनवाड़ी केंद्र ",
+        path: "/OurAwc",
+       
       },
     
      
   {
     icon: <FaUsers />,
-    label: "test",
+    label: "मांग दर्ज करें ",
     submenu: [
       {
-        label: "Registered Student",
+        label: "महिला पोषण",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+       {
+        label: "बाल पोषण",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+       {
+        label: "अंचल अमृत",
         path: "#",
         icon: <FaPlusSquare />,
       },
     ],
   },
-       {
-   icon: <FaClock />,
-   label: "Time Schedule",
-   path: "/SupervisorDashBoard",
- },
-      {
-        icon: <FaComments />,
-        label: "Send Query",
-        path: "/SupervisorDashBoard",
-      },
       
-       
+     
+    {
+    icon: <FaUsers />,
+    label: "स्टॉक मैनेजर(वितरण) ",
+    submenu: [
+      {
+        label: "महिला पोषण",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+       {
+        label: "बाल पोषण",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+       {
+        label: "महालक्ष्मी किट",
+        path: "#",
+        icon: <FaPlusSquare />,
+      },
+    ],
+  },    
       
      ];
 

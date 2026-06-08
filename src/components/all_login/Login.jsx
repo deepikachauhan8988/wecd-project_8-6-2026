@@ -240,7 +240,7 @@ const handleLoginSuccess = (data) => {
          navigate('/CDPODashboard');
          break;
        case 'supervisor':
-         navigate('/SupervisorDashBoard');
+         navigate('/SectorDashBoard');
          break;
        default:
          navigate('/UserDashboard');

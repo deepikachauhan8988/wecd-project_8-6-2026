@@ -13,7 +13,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import Home from './components/pages/Home';
 import { AuthProvider, useAuth } from './components/all_login/AuthContext';
-import SupervisorDashBoard from "./components/sector_panel/SectorDashBoard";
+import SectorDashBoard from "./components/sector_panel/SectorDashBoard";
 import NavBar from './components/nav_bar/NavBar';
 import Login from "./components/all_login/Login";
 import DPODashboard from "./components/DPO_panel/DPODashboard";
@@ -55,11 +55,12 @@ function AppContent() {
       {!shouldHideNavbar && <NavBar />}
       <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/SectorDashBoard" element={
+          <Route path="/SectorDashBoard" element={<SectorDashBoard />} />
+          {/* <Route path="/SectorDashBoard" element={
             <ProtectedRoute>
               <SupervisorDashBoard />
             </ProtectedRoute>
-          } />
+          } /> */}
           <Route path="/DPODashboard" element={
             <ProtectedRoute>
               <DPODashboard />
