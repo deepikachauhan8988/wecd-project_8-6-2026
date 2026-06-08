@@ -8,11 +8,11 @@ import ResetPasswordModal from './ResetPasswordModal';
 import Womenlogo from '../../assets/images/women_logo.jpeg';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    role: 'it-cell',
-    email_or_phone: 'IT Cell',
-    password: '',
-  });
+const [formData, setFormData] = useState({
+     role: 'director',
+     email_or_phone: 'Directorate',
+     password: '',
+   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,11 +22,10 @@ const Login = () => {
   const [resetPasswordUsername, setResetPasswordUsername] = useState('');
   const [resetPasswordRole, setResetPasswordRole] = useState('');
 
-  // New state for Anganwadi dropdowns
-  const [districts, setDistricts] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [sectors, setSectors] = useState([]);
-  const [anganwadis, setAnganwadis] = useState([]);
+// New state for dropdowns
+   const [districts, setDistricts] = useState([]);
+   const [projects, setProjects] = useState([]);
+   const [sectors, setSectors] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedProject, setSelectedProject] = useState('');
   const [selectedSector, setSelectedSector] = useState('');
@@ -60,8 +59,7 @@ const Login = () => {
     succeedDesc: "Build your career from class 9 to 12",
     welcomeTitle: "Welcome",
     welcomeSubtitle: "Sign in to continue to your dashboard",
-    needAccess: "Need access?",
-    contactAdmin: "Contact Admin",
+    
     errors: {
       userIdRequired: "User ID / Phone is required",
       passwordRequired: "Password is required",
@@ -86,11 +84,9 @@ const Login = () => {
   const roleOptions = useMemo(() => {
     return [
       { value: 'director', label: 'Directorate', icon: 'bi-person-workspace' },
-      { value: 'it-cell', label: 'IT Cell', icon: 'bi-cpu' },
       { value: 'dpo', label: 'DPO', icon: 'bi-briefcase' },
       { value: 'cdpo', label: 'CDPO', icon: 'bi-person-badge' },
-      { value: 'Sector', label: 'Sector', icon: 'bi-person-check' },
-      { value: 'anganwadi', label: 'Anganwadi Center', icon: 'bi-house-door' },
+      { value: 'supervisor', label: 'Sector ', icon: 'bi-person-check' },
     ];
   }, []);
 
@@ -105,173 +101,151 @@ const Login = () => {
     }
   }, [roleOptions]);
 
-   const handleChange = (e) => {
-     const { name, value } = e.target;
-     setFormData(prev => ({ ...prev, [name]: value }));
-     setError('');
+const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData(prev => ({ ...prev, [name]: value }));
+      setError('');
 
-     // Reset dropdown selections and dependent data when role changes
-     if (name === 'role') {
-       setSelectedDistrict('');
-       setSelectedProject('');
-       setSelectedSector('');
-       setFormData(prev => ({ ...prev, email_or_phone: '' }));
-       const emailValue = value === 'director' ? 'Directorate' : value === 'it-cell' ? 'IT Cell' : '';
-       setFormData(prev => ({ ...prev, email_or_phone: emailValue }));
-       setDistricts([]);
-       setProjects([]);
-       setSectors([]);
-       setAnganwadis([]);
-       setSectorProjectsData([]);
-     }
-   };
+// Reset dropdown selections and dependent data when role changes
+       if (name === 'role') {
+         setSelectedDistrict('');
+         setSelectedProject('');
+         setSelectedSector('');
+         setFormData(prev => ({ ...prev, email_or_phone: '' }));
+         const emailValue = value === 'director' ? 'Directorate' : '';
+         setFormData(prev => ({ ...prev, email_or_phone: emailValue }));
+         setDistricts([]);
+         setProjects([]);
+         setSectors([]);
+         setSectorProjectsData([]);
+       }
+    };
 
-  // Fetching logic for Anganwadi dropdowns
-  useEffect(() => {
-    if (['anganwadi', 'Sector', 'cdpo', 'dpo'].includes(formData.role)) {
-      fetchDistricts();
-    }
-  }, [formData.role]);
-
-  const fetchDistricts = async () => {
-    let url = '';
-    if (formData.role === 'anganwadi') {
-      url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/anganwadi-dropdown/';
-    } else if (formData.role === 'Sector') {
-      url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/sector-dropdown/';
-    } else if (formData.role === 'cdpo') {
-      url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/cdpo-dropdown/';
-    } else if (formData.role === 'dpo') {
-      url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/district-list/';
-    }
-    try {
-      const res = await axios.get(url || '');
-      if (res.data.success) setDistricts(res.data.data);
-    } catch (err) { console.error("Error fetching districts", err); }
-  };
-
-  const handleDistrictChange = async (e) => {
-    const district = e.target.value;
-    setSelectedDistrict(district);
-    setSelectedProject('');
-    setSelectedSector('');
-    setFormData(prev => ({ ...prev, email_or_phone: '' }));
-    setProjects([]); setSectors([]); setAnganwadis([]);
-    setSectorProjectsData([]);
-
-    if (district) {
-      if (formData.role === 'dpo') {
-        const selectedObj = districts.find(d => d.district === district);
-        if (selectedObj) {
-          setFormData(prev => ({ ...prev, email_or_phone: selectedObj.sdname }));
-        }
-        return;
+// Fetching logic for dropdowns
+    useEffect(() => {
+      if (['supervisor', 'cdpo', 'dpo'].includes(formData.role)) {
+        fetchDistricts();
       }
+    }, [formData.role]);
 
+    const fetchDistricts = async () => {
       let url = '';
-      if (formData.role === 'anganwadi') {
-        url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/anganwadi-dropdown/?district=${district}`;
-      } else if (formData.role === 'Sector') {
-        url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/sector-dropdown/?district=${district}`;
+      if (formData.role === 'supervisor') {
+        url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/sector-dropdown/';
       } else if (formData.role === 'cdpo') {
-        url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/cdpo-dropdown/?district=${district}`;
+        url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/cdpo-dropdown/';
+      } else if (formData.role === 'dpo') {
+        url = 'https://mahadevaaya.com/golden100days/golden100days_backend/api/district-list/';
       }
-
       try {
-        const res = await axios.get(url);
-        if (res.data.success) {
-          if (formData.role === 'Sector') {
-            setSectorProjectsData(res.data.data);
-            setProjects(res.data.data.map(item => ({ project: item.project_code })));
-          } else if (formData.role === 'cdpo') {
-            setProjects(res.data.data.map(item => ({ project: item.project_name })));
-          } else {
-            setProjects(res.data.data);
+        const res = await axios.get(url || '');
+        if (res.data.success) setDistricts(res.data.data);
+      } catch (err) { console.error("Error fetching districts", err); }
+    };
+
+const handleDistrictChange = async (e) => {
+      const district = e.target.value;
+      setSelectedDistrict(district);
+      setSelectedProject('');
+      setSelectedSector('');
+      setFormData(prev => ({ ...prev, email_or_phone: '' }));
+      setProjects([]); setSectors([]);
+      setSectorProjectsData([]);
+
+      if (district) {
+        if (formData.role === 'dpo') {
+          const selectedObj = districts.find(d => d.district === district);
+          if (selectedObj) {
+            setFormData(prev => ({ ...prev, email_or_phone: selectedObj.sdname }));
           }
+          return;
         }
-      } catch (err) { console.error("Error fetching projects", err); }
-    }
-  };
 
-  const handleProjectChange = async (e) => {
-    const project = e.target.value;
-    setSelectedProject(project);
-    setSelectedSector('');
-    setSectors([]); setAnganwadis([]);
+        let url = '';
+        if (formData.role === 'supervisor') {
+          url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/sector-dropdown/?district=${district}`;
+        } else if (formData.role === 'cdpo') {
+          url = `https://mahadevaaya.com/golden100days/golden100days_backend/api/cdpo-dropdown/?district=${district}`;
+        }
 
-    if (project) {
-      if (formData.role === 'Sector') {
-        setFormData(prev => ({ ...prev, email_or_phone: '' }));
-        const projData = SectorProjectsData.find(p => p.project_code === project);
-        if (projData) setSectors(projData.sectors);
-      } else if (formData.role === 'cdpo') {
-        setFormData(prev => ({ ...prev, email_or_phone: project }));
+        try {
+          const res = await axios.get(url);
+          if (res.data.success) {
+            if (formData.role === 'supervisor') {
+              setSectorProjectsData(res.data.data);
+              setProjects(res.data.data.map(item => ({ project: item.project_code })));
+            } else if (formData.role === 'cdpo') {
+              setProjects(res.data.data.map(item => ({ project: item.project_name })));
+            } else {
+              setProjects(res.data.data);
+            }
+          }
+        } catch (err) { console.error("Error fetching projects", err); }
+      }
+    };
+
+const handleProjectChange = async (e) => {
+      const project = e.target.value;
+      setSelectedProject(project);
+      setSelectedSector('');
+      setSectors([]);
+
+      if (project) {
+        if (formData.role === 'supervisor') {
+          setFormData(prev => ({ ...prev, email_or_phone: '' }));
+          const projData = SectorProjectsData.find(p => p.project_code === project);
+          if (projData) setSectors(projData.sectors);
+        } else if (formData.role === 'cdpo') {
+          setFormData(prev => ({ ...prev, email_or_phone: project }));
+        } else {
+          setFormData(prev => ({ ...prev, email_or_phone: '' }));
+        }
       } else {
         setFormData(prev => ({ ...prev, email_or_phone: '' }));
-        try {
-          const res = await axios.get(`https://mahadevaaya.com/golden100days/golden100days_backend/api/anganwadi-dropdown/?district=${selectedDistrict}&project=${project}`);
-          if (res.data.success) setSectors(res.data.data);
-        } catch (err) { console.error("Error fetching sectors", err); }
       }
-    } else {
-      setFormData(prev => ({ ...prev, email_or_phone: '' }));
-    }
-  };
+    };
 
-  const handleSectorChange = async (e) => {
-    const sector = e.target.value;
-    setSelectedSector(sector);
-    setAnganwadis([]);
+const handleSectorChange = async (e) => {
+      const sector = e.target.value;
+      setSelectedSector(sector);
 
-    if (formData.role === 'Sector') {
-      // For Sector, the selected sector name is the username
-      setFormData(prev => ({ ...prev, email_or_phone: sector }));
-    } else {
-      setFormData(prev => ({ ...prev, email_or_phone: '' }));
-      if (sector) {
-        try {
-          const res = await axios.get(`https://mahadevaaya.com/golden100days/golden100days_backend/api/anganwadi-dropdown/?district=${selectedDistrict}&project=${selectedProject}&sector=${sector}`);
-          if (res.data.success) setAnganwadis(res.data.data);
-        } catch (err) { console.error("Error fetching anganwadis", err); }
+      if (formData.role === 'supervisor') {
+        // For supervisor, the selected sector name is the username
+        setFormData(prev => ({ ...prev, email_or_phone: sector }));
+      } else {
+        setFormData(prev => ({ ...prev, email_or_phone: '' }));
       }
-    }
-  };
+    };
 
-  const handleLoginSuccess = (data) => {
-    login({
-      access: data.access,
-      refresh: data.refresh,
-      role: data.role,
-      unique_id: data.unique_id,
-      user: data.user || null,
-    });
-    alert(content.errors.loginSuccess);
+const handleLoginSuccess = (data) => {
+     login({
+       access: data.access,
+       refresh: data.refresh,
+       role: data.role,
+       unique_id: data.unique_id,
+       user: data.user || null,
+     });
+     alert(content.errors.loginSuccess);
 
-    // Role-based redirection to specific dashboards
-    const userRole = data.role;
-    switch (userRole) {
-      case 'director':
-        navigate('/DirectorDashboard');
-        break;
-      case 'dpo':
-        navigate('/DPODashboard');
-        break;
-      case 'cdpo':
-        navigate('/CDPODashboard');
-        break;
-      case 'Sector':
-        navigate('/SectorDashBoard');
-        break;
-      case 'anganwadi':
-        navigate('/AnganwadiDashboard');
-        break;
-      case 'it-cell':
-        navigate('/ITCellDashboard');
-        break;
-      default:
-        navigate('/UserDashboard');
-    }
-  };
+     // Role-based redirection to specific dashboards
+     const userRole = data.role;
+     switch (userRole) {
+       case 'director':
+         navigate('/DirectorDashboard');
+         break;
+       case 'dpo':
+         navigate('/DPODashboard');
+         break;
+       case 'cdpo':
+         navigate('/CDPODashboard');
+         break;
+       case 'supervisor':
+         navigate('/SupervisorDashBoard');
+         break;
+       default:
+         navigate('/UserDashboard');
+     }
+   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -361,10 +335,7 @@ const Login = () => {
               <p>{content.brandSubtitle}</p>
             </div>
 
-            <div className="welcome-section">
-              <h2>{content.welcomeTitle}</h2>
-              <p>{content.welcomeSubtitle}</p>
-            </div>
+           
 
             {/* Radio Button Selection */}
             <div className="role-selector">
@@ -393,7 +364,7 @@ const Login = () => {
                 </div>
               )}
 
-              {['anganwadi', 'Sector', 'cdpo', 'dpo'].includes(formData.role) ? (
+{['supervisor', 'cdpo', 'dpo'].includes(formData.role) ? (
                 <>
                   <div className="form-group">
                     <label>{content.districtLabel}</label>
@@ -438,24 +409,6 @@ const Login = () => {
                       </select>
                     </div>
                   )}
-
-                  {formData.role === 'anganwadi' && (
-                    <div className="form-group">
-                    <label>{content.anganwadiLabel}</label>
-                    <select 
-                      className="form-select custom-login-select" 
-                      name="email_or_phone" 
-                      value={formData.email_or_phone} 
-                      onChange={handleChange} 
-                      disabled={!selectedSector}
-                    >
-                      <option value="">{content.anganwadiLabel}</option>
-                      {anganwadis.map((a) => (
-                        <option key={a.id} value={a.awc_code}>{a.display_name}</option>
-                      ))}
-                    </select>
-                  </div>
-                  )}
                 </>
                ) : (
                  <div className="form-group">
@@ -468,7 +421,7 @@ const Login = () => {
                        value={formData.email_or_phone}
                        onChange={handleChange}
                        placeholder={content.userIdPlaceholder}
-                       readOnly={['director', 'it-cell'].includes(formData.role)}
+                       readOnly={['director'].includes(formData.role)}
                      />
                    </div>
                  </div>

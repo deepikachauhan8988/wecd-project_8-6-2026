@@ -163,10 +163,10 @@
 }
 
 .radio-selection {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   gap: 10px;
+ }
 
 .radio-option {
   display: flex;
@@ -693,22 +693,22 @@
    ========================================== */
 
 @media (max-width: 768px) {
-  .login-container { flex-direction: column; border-radius: 20px; }
-  .login-right { width: 100%; padding: 24px 20px; order: -1; }
-  .login-content { padding: 24px 22px; }
-  .login-header { margin-bottom: 22px; }
-  .login-header::after { left: 5%; right: 5%; }
-  .radio-selection { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .radio-option { padding: 8px 10px; }
-  .radio-label { font-size: 12px; }
-  .uttarakhand-logo { width: 80px; height: 80px; }
-  .uttarakhand-title { font-size: 18px; }
-  .uttarakhand-subtitle { font-size: 11px; }
-  .highlight-item { padding: 12px 10px; }
-  .highlight-item i { font-size: 20px; }
-  .highlight-item h3 { font-size: 13px; }
-  .highlight-item p { font-size: 10px; }
-}
+   .login-container { flex-direction: column; border-radius: 20px; }
+   .login-right { width: 100%; padding: 24px 20px; order: -1; }
+   .login-content { padding: 24px 22px; }
+   .login-header { margin-bottom: 22px; }
+   .login-header::after { left: 5%; right: 5%; }
+   .radio-selection { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+   .radio-option { padding: 8px 10px; }
+   .radio-label { font-size: 12px; }
+   .uttarakhand-logo { width: 80px; height: 80px; }
+   .uttarakhand-title { font-size: 18px; }
+   .uttarakhand-subtitle { font-size: 11px; }
+   .highlight-item { padding: 12px 10px; }
+   .highlight-item i { font-size: 20px; }
+   .highlight-item h3 { font-size: 13px; }
+   .highlight-item p { font-size: 10px; }
+ }
 
 @media (max-width: 480px) {
   .login-page { padding: 8px; margin-top: 50px; }
