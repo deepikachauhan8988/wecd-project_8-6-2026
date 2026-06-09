@@ -74,6 +74,9 @@ function SectorHeader({ toggleSidebar }) {
           </Col>
 
           <Col>
+            <div className="header-heading">
+              <h5 className="mb-0">WECD Uttarakhand | State Portal</h5>
+            </div>
             {error && (
               <Alert variant="warning" className="mb-0 py-1">
                 <small>{error}</small>

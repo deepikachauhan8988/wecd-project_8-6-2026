@@ -88,25 +88,25 @@ const menuItems = [
     },
     {
       icon: <FaBuilding />,
-      label: "हमारे आंगनवाड़ी केंद्र ",
+      label: "Our Anganwadi Centers",
       path: "/OurAwc",
     },
     {
       icon: <FaTasks />,
-      label: "मांग दर्ज करें ",
+      label: "Register Demand",
       submenu: [
         {
-          label: "महिला पोषण",
+          label: "Women Nutrition",
           path: "/DemandPoshanFinal",
           icon: <FaFemale />,
         },
         {
-          label: "बाल पोषण",
+          label: "Child Nutrition",
           path: "/DemandBalPoshan",
           icon: <FaChild />,
         },
         {
-          label: "अंचल अमृत",
+          label: "Anchal Amrit",
           path: "/DemandanchalAamrit",
           icon: <FaTint />,
         },
@@ -114,20 +114,20 @@ const menuItems = [
     },
     {
       icon: <FaServer />,
-      label: "स्टॉक मैनेजर(वितरण) ",
+      label: "Stock Manager (Distribution)",
       submenu: [
         {
-          label: "महिला पोषण",
+          label: "Women Nutrition",
           path: "/DistributionMahilaPoshFinal",
           icon: <FaFemale />,
         },
         {
-          label: "बाल पोषण",
+          label: "Child Nutrition",
           path: "/DistributionBalPoshan",
           icon: <FaChild />,
         },
         {
-          label: "महालक्ष्मी किट",
+          label: "Mahalakshmi Kit",
           path: "/MahalakshmiKit",
           icon: <FaBox />,
         },

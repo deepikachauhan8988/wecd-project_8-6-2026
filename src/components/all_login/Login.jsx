@@ -34,11 +34,10 @@ const [formData, setFormData] = useState({
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // Content for Government Portal Style (consistent with Home.jsx)
-  const content = {
-  
-   
-    roleLabel: "Select Your Role",
+// Content for Government Portal Style (consistent with Home.jsx)
+   const content = {
+     brandSubtitle: "Women Empowerment & Child Development Department",
+     roleLabel: "Select Your Role",
     userIdLabel: "Login Type",
     userIdPlaceholder: "Enter Login Type",
     passwordLabel: "Password",
@@ -60,6 +59,8 @@ const [formData, setFormData] = useState({
     welcomeTitle: "Welcome",
     welcomeSubtitle: "Sign in to continue to your dashboard",
     
+    needAccess: "Need access? ",
+    contactAdmin: "Contact Admin",
     errors: {
       userIdRequired: "User ID / Phone is required",
       passwordRequired: "Password is required",
@@ -86,13 +87,13 @@ const [formData, setFormData] = useState({
       { value: 'director', label: 'Directorate', icon: 'bi-person-workspace' },
       { value: 'dpo', label: 'DPO', icon: 'bi-briefcase' },
       { value: 'cdpo', label: 'CDPO', icon: 'bi-person-badge' },
-      { value: 'supervisor', label: 'Sector ', icon: 'bi-person-check' },
+      { value: 'supervisor', label: 'Sector', icon: 'bi-person-check' },
     ];
   }, []);
 
   const loginTitle = useMemo(() => {
     const selectedRole = roleOptions.find(r => r.value === formData.role);
-    return selectedRole ? selectedRole.label : 'लॉगिन';
+    return selectedRole ? selectedRole.label : 'Login';
   }, [formData.role, roleOptions]);
 
   useEffect(() => {
@@ -319,7 +320,7 @@ const handleLoginSuccess = (data) => {
           <div className="login-right">
           <div className="uttarakhand-section">
             <img src={UkLogo} alt="Uttarakhand Logo" className="uttarakhand-logo" />
-            <h2 className="uttarakhand-title">महिला सशक्तिकरण एवं बाल विकास विभाग<br/>Women Empowerment & Child Development Department</h2>
+            <h2 className="uttarakhand-title">Women Empowerment & Child Development Department<br/><span className="state-portal">WECD Uttarakhand | State Portal</span></h2>
             
           </div>
 

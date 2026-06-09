@@ -1,3 +1,25 @@
+.header-heading {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .header-heading {
+        display: block;
+    }
+    
+    .header-heading h5 {
+        color: #333;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .header-heading {
+        display: none;
+    }
+}
+
 .dashboard-header .rounded-circle {
     width: 40px !important;
     height: 40px !important;

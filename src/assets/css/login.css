@@ -610,13 +610,21 @@
 }
 
 .uttarakhand-title {
-  font-size: 20px;
-  font-weight: 800;
-  color: #000000;
-  margin: 0;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
+   font-size: 20px;
+   font-weight: 800;
+   color: #000000;
+   margin: 0;
+   letter-spacing: 0.5px;
+   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+ }
+ 
+ .state-portal {
+   font-size: 14px;
+   font-weight: 600;
+   color: #1B4F8A;
+   display: block;
+   margin-top: 4px;
+ }
 
 .uttarakhand-subtitle {
   font-size: 11px;
@@ -702,8 +710,9 @@
    .radio-option { padding: 8px 10px; }
    .radio-label { font-size: 12px; }
    .uttarakhand-logo { width: 80px; height: 80px; }
-   .uttarakhand-title { font-size: 18px; }
-   .uttarakhand-subtitle { font-size: 11px; }
+.uttarakhand-title { font-size: 18px; }
+    .state-portal { font-size: 12px; }
+    .uttarakhand-subtitle { font-size: 11px; }
    .highlight-item { padding: 12px 10px; }
    .highlight-item i { font-size: 20px; }
    .highlight-item h3 { font-size: 13px; }
@@ -725,8 +734,9 @@
   .login-btn { padding: 12px; font-size: 13px; letter-spacing: 0.3px; }
   .login-right { padding: 20px 16px; }
   .uttarakhand-logo { width: 70px; height: 70px; }
-  .uttarakhand-title { font-size: 16px; }
-  .uttarakhand-subtitle { font-size: 10px; }
+.uttarakhand-title { font-size: 16px; }
+   .state-portal { font-size: 11px; }
+   .uttarakhand-subtitle { font-size: 10px; }
   .highlight-item { padding: 10px 8px; }
   .highlight-item i { font-size: 18px; }
   .highlight-item h3 { font-size: 12px; }
