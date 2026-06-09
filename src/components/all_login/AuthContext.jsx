@@ -4,7 +4,7 @@ import axios from 'axios';
 const AuthContext = createContext(null);
 
 const STORAGE_KEY = 'gyandhara_auth';
-const API_URL = 'https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api';
+const API_URL = 'https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api';
 
 let isRefreshing = false;
 let failedQueue = [];
