@@ -74,8 +74,8 @@ function SectorHeader({ toggleSidebar }) {
           </Col>
 
           <Col>
-            <div className="header-heading">
-              <h5 className="mb-0">WECD Uttarakhand | State Portal</h5>
+<div className="header-heading">
+               <h5 className="mb-0">WECD Uttarakhand | स्टेट पोर्टल</h5>
             </div>
             {error && (
               <Alert variant="warning" className="mb-0 py-1">
@@ -122,9 +122,9 @@ function SectorHeader({ toggleSidebar }) {
                     </span>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={handleLogout}>
-                      <FaSignOutAlt className="me-2" /> Logout
-                    </Dropdown.Item>
+<Dropdown.Item onClick={handleLogout}>
+                       <FaSignOutAlt className="me-2" /> लॉगआउट
+                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>

@@ -77,36 +77,36 @@ const SupervisorLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, on
 const menuItems = [
     {
       icon: <FaTachometerAlt />,
-      label: "DashBoard",
+      label: "डैशबोर्ड",
       path: "/SectorDashBoard",
       active: true,
     },
     {
       icon: <FaEdit />,
-      label: "Change Password",
+      label: "पासवर्ड बदलें",
       path: "/SectorProfile",
     },
     {
       icon: <FaBuilding />,
-      label: "Our Anganwadi Centers",
+      label: "हमारे आंगनवाड़ी केंद्र",
       path: "/OurAwc",
     },
     {
       icon: <FaTasks />,
-      label: "Register Demand",
+      label: "मांग दर्ज करें",
       submenu: [
         {
-          label: "Women Nutrition",
+          label: "महिला पोषण",
           path: "/DemandPoshanFinal",
           icon: <FaFemale />,
         },
         {
-          label: "Child Nutrition",
+          label: "बाल पोषण",
           path: "/DemandBalPoshan",
           icon: <FaChild />,
         },
         {
-          label: "Anchal Amrit",
+          label: "अंचल अमृत",
           path: "/DemandanchalAamrit",
           icon: <FaTint />,
         },
@@ -114,20 +114,20 @@ const menuItems = [
     },
     {
       icon: <FaServer />,
-      label: "Stock Manager (Distribution)",
+      label: "स्टॉक मैनेजर (वितरण)",
       submenu: [
         {
-          label: "Women Nutrition",
+          label: "महिला पोषण",
           path: "/DistributionMahilaPoshFinal",
           icon: <FaFemale />,
         },
         {
-          label: "Child Nutrition",
+          label: "बाल पोषण",
           path: "/DistributionBalPoshan",
           icon: <FaChild />,
         },
         {
-          label: "Mahalakshmi Kit",
+          label: "महालक्ष्मी किट",
           path: "/MahalakshmiKit",
           icon: <FaBox />,
         },
