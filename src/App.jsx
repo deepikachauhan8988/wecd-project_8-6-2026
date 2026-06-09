@@ -16,6 +16,14 @@ import { AuthProvider, useAuth } from './components/all_login/AuthContext';
 import SectorDashBoard from "./components/sector_panel/SectorDashBoard";
 import NavBar from './components/nav_bar/NavBar';
 import Login from "./components/all_login/Login";
+import SectorProfile from "./components/sector_panel/SectorProfile";
+import OurAwc from "./components/sector_panel/OurAwc";
+import MahalakshmiKit from "./components/sector_panel/Stock_manager_distribution/MahalakshmiKit";
+import DemandanchalAamrit from "./components/sector_panel/demand/DemandanchalAamrit";
+import DemandPoshanFinal from "./components/sector_panel/demand/DemandPoshanFinal";
+import DemandBalPoshan from "./components/sector_panel/demand/DemandBalPoshan";
+import DistributionMahilaPoshFinal from "./components/sector_panel/Stock_manager_distribution/DistributionMahilaPoshFinal";
+import DistributionBalPoshan from "./components/sector_panel/Stock_manager_distribution/DistributionBalPoshan";
 import DPODashboard from "./components/DPO_panel/DPODashboard";
 
 import CDPODashboard from "./components/CDPO_panel/CDPODashboard";
@@ -45,8 +53,8 @@ const ProtectedRoute = ({ children }) => {
 function AppContent() {
   const location = useLocation();
 
-  const hideNavbarRoutes = ["/SectorDashBoard", "/DPODashboard",  "/CDPODashboard", "/DirectorDashboard"];
-  const hideFooterRoutes = ["/SectorDashBoard", "/DPODashboard",  "/CDPODashboard", "/DirectorDashboard"];
+  const hideNavbarRoutes = ["/SectorDashBoard", "/SectorProfile", "/OurAwc", "/MahalakshmiKit", "/DemandanchalAamrit", "/DemandPoshanFinal", "/DemandBalPoshan", "/DistributionMahilaPoshFinal", "/DistributionBalPoshan", "/DPODashboard",  "/CDPODashboard", "/DirectorDashboard"];
+  const hideFooterRoutes = ["/SectorDashBoard", "/SectorProfile", "/OurAwc", "/MahalakshmiKit", "/DemandanchalAamrit", "/DemandPoshanFinal", "/DemandBalPoshan", "/DistributionMahilaPoshFinal", "/DistributionBalPoshan", "/DPODashboard",  "/CDPODashboard", "/DirectorDashboard"];
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
   const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
 
@@ -56,9 +64,18 @@ function AppContent() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/SectorDashBoard" element={<SectorDashBoard />} />
+           <Route path="/SectorProfile" element={<SectorProfile />} />
+           <Route path="/OurAwc" element={<OurAwc />} />
+           <Route path="/MahalakshmiKit" element={<MahalakshmiKit />} />
+           <Route path="/DemandanchalAamrit" element={<DemandanchalAamrit />} />
+           <Route path="/DemandPoshanFinal" element={<DemandPoshanFinal />} />
+           <Route path="/DemandBalPoshan" element={<DemandBalPoshan />} />
+           <Route path="/DistributionMahilaPoshFinal" element={<DistributionMahilaPoshFinal />} />
+           <Route path="/DistributionBalPoshan" element={<DistributionBalPoshan />} />
           <Route path="/DPODashboard" element={<DPODashboard />} />
           <Route path="/DPODashboard" element={<DPODashboard />} />
           <Route path="/CDPODashboard" element={<CDPODashboard />} />
+          <Route path="/DirectorDashboard" element={<DirectorDashboard />} />
           {/* <Route path="/SectorDashBoard" element={
             <ProtectedRoute>
               <SupervisorDashBoard />
@@ -75,11 +92,11 @@ function AppContent() {
               <CDPODashboard />
             </ProtectedRoute>
           } /> */}
-          <Route path="/DirectorDashboard" element={
+          {/* <Route path="/DirectorDashboard" element={
             <ProtectedRoute>
               <DirectorDashboard />
             </ProtectedRoute>
-          } />
+          } /> */}
            
           <Route path="/Login" element={<Login />} />
   

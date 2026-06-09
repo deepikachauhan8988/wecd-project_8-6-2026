@@ -178,7 +178,7 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
           {sidebarOpen ? (
             <div className="logo-container">
               <div className="logo">
-                  District Panel
+                  Project Panel
               </div>
             </div>
           ) : (

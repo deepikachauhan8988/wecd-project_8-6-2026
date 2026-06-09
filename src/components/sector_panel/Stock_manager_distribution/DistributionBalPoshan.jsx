@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Spinner, Table, Button } from "react-bootstrap";
-import { useAuth } from "../all_login/AuthContext";
-import "../../assets/css/supervisorleftnav.css";
-import DirectorHeader from "./DirectorHeader";
-import DirectorLeftNav from "./DirectorLeftNav";
 
-const DirectorDashboard = () => {
+import "../../../assets/css/supervisorleftnav.css";
+
+import { useAuth } from "../../all_login/AuthContext";
+import SectorHeader from "../SectorHeader";
+import SectorLeftNav from "../SectorLeftNav";
+
+const DistributionBalPoshan = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
@@ -22,19 +24,19 @@ const DirectorDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <DirectorLeftNav
+      <SectorLeftNav
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         isMobile={isMobile}
         isTablet={isTablet}
       />
       <div className="main-content-dash">
-        <DirectorHeader toggleSidebar={toggleSidebar} />
+        <SectorHeader toggleSidebar={toggleSidebar} />
 
         <Container fluid className="dashboard-box mt-3">
           <div className="main-heading">
             <h3 className="mb-4 fw-bold">
-              Director Dashboard
+        Distribution Bal Poshan
             </h3>
           </div>
 
@@ -47,4 +49,4 @@ const DirectorDashboard = () => {
   );
 };
 
-export default DirectorDashboard;
+export default DistributionBalPoshan ;

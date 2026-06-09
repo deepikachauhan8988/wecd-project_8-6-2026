@@ -81,11 +81,10 @@ const SupervisorLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, on
         path: "/SectorDashBoard",
         active: true,
       },
-       {
-icon: <FaEdit />,
-         label: "Change Password",
-         path: "/SectorPassword",
-       
+{
+        icon: <FaEdit />,
+        label: "Change Password",
+        path: "/SectorProfile",
       },
        {
 icon: <FaBuilding />,
@@ -96,49 +95,49 @@ icon: <FaBuilding />,
     
      
 {
-     icon: <FaTasks />,
-     label: "मांग दर्ज करें ",
-     submenu: [
-       {
-         label: "महिला पोषण",
-         path: "#",
-         icon: <FaFemale />,
-       },
+      icon: <FaTasks />,
+      label: "मांग दर्ज करें ",
+      submenu: [
         {
-         label: "बाल पोषण",
-         path: "#",
-         icon: <FaChild />,
-       },
-        {
-         label: "अंचल अमृत",
-         path: "#",
-         icon: <FaTint />,
-       },
-     ],
-   },
+          label: "महिला पोषण",
+          path: "/DemandPoshanFinal",
+          icon: <FaFemale />,
+        },
+         {
+          label: "बाल पोषण",
+          path: "/DemandBalPoshan",
+          icon: <FaChild />,
+        },
+         {
+          label: "अंचल अमृत",
+          path: "/DemandanchalAamrit",
+          icon: <FaTint />,
+        },
+      ],
+    },
       
      
 {
-      icon: <FaServer />,
-      label: "स्टॉक मैनेजर(वितरण) ",
-      submenu: [
-       {
-         label: "महिला पोषण",
-         path: "#",
-         icon: <FaFemale />,
-       },
+       icon: <FaServer />,
+       label: "स्टॉक मैनेजर(वितरण) ",
+       submenu: [
         {
-         label: "बाल पोषण",
-         path: "#",
-         icon: <FaChild />,
-       },
-        {
-         label: "महालक्ष्मी किट",
-         path: "#",
-         icon: <FaBox />,
-       },
-     ],
-   },
+          label: "महिला पोषण",
+          path: "/DistributionMahilaPoshFinal",
+          icon: <FaFemale />,
+        },
+         {
+          label: "बाल पोषण",
+          path: "/DistributionBalPoshan",
+          icon: <FaChild />,
+        },
+         {
+          label: "महालक्ष्मी किट",
+          path: "/MahalakshmiKit",
+          icon: <FaBox />,
+        },
+      ],
+    },
       
      ];
 
