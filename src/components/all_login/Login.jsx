@@ -131,11 +131,11 @@ const handleChange = (e) => {
     const fetchDistricts = async () => {
       let url = '';
       if (formData.role === 'supervisor') {
-        url = 'https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/sector-dropdown/';
+        url = 'https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/sector-dropdown/';
       } else if (formData.role === 'cdpo') {
-        url = 'https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/cdpo-dropdown/';
+        url = 'https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/cdpo-dropdown/';
       } else if (formData.role === 'dpo') {
-        url = 'https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/district-list/';
+        url = 'https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/district-list/';
       }
       try {
         const res = await axios.get(url || '');
@@ -163,9 +163,9 @@ const handleDistrictChange = async (e) => {
 
         let url = '';
         if (formData.role === 'supervisor') {
-          url = `https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/sector-dropdown/?district=${district}`;
+          url = `https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/sector-dropdown/?district=${district}`;
         } else if (formData.role === 'cdpo') {
-          url = `https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/cdpo-dropdown/?district=${district}`;
+          url = `https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/cdpo-dropdown/?district=${district}`;
         }
 
         try {
@@ -270,7 +270,7 @@ const handleLoginSuccess = (data) => {
       };
 
       const response = await axios.post(
-        'https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/login/',
+        'https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/login/',
         payload
       );
 
@@ -301,7 +301,7 @@ const handleLoginSuccess = (data) => {
     setLoading(true);
     try {
       const payload = { username: resetPasswordUsername, password: newPassword, role: resetPasswordRole };
-      const response = await axios.post('https://mahadevaaya.com/wecdukschemes/wecdukschemes_backend/api/login/', payload);
+      const response = await axios.post('https://mahadevaaya.com/wecdschemes/wecdschemes_backend/api/login/', payload);
       if (response.data.access) {
         handleLoginSuccess(response.data);
       }

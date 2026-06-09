@@ -88,7 +88,7 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
        {
          icon: <FaKey />,
          label: "Change Password",
-         path: "/CDPOChangePassword",
+         path: "/CDPOProfile",
        },
        {
          icon: <FaUsers />,
@@ -102,11 +102,11 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
         submenu: [
           {
             label: "Demand",
-            path: "#",
+            path: "/DemandMahilaPoshanProject",
           },
           {
             label: "Distribution",
-            path: "#",
+            path: "/Stockmahila",
           },
         ],
       },
@@ -118,11 +118,11 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
         submenu: [
           {
             label: "Demand",
-            path: "#",
+            path: "/DemandBalPoshanProject",
           },
           {
             label: "Distribution",
-            path: "#",
+            path: "/StockBal",
           },
         ],
       },
@@ -137,6 +137,14 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
           },
           {
             label: "Distribution",
+            path: "#",
+          },
+          {
+            label: "Request",
+            path: "#",
+          },
+          {
+            label: "Beneficiary",
             path: "#",
           },
         ],

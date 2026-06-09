@@ -74,27 +74,24 @@ const SupervisorLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, on
     }
   };
 
- const menuItems = [
-      {
-        icon: <FaTachometerAlt />,
-        label: "DashBoard",
-        path: "/SectorDashBoard",
-        active: true,
-      },
-{
-        icon: <FaEdit />,
-        label: "Change Password",
-        path: "/SectorProfile",
-      },
-       {
-icon: <FaBuilding />,
-         label: "हमारे आंगनवाड़ी केंद्र ",
-         path: "/OurAwc",
-       
-      },
-    
-     
-{
+const menuItems = [
+    {
+      icon: <FaTachometerAlt />,
+      label: "DashBoard",
+      path: "/SectorDashBoard",
+      active: true,
+    },
+    {
+      icon: <FaEdit />,
+      label: "Change Password",
+      path: "/SectorProfile",
+    },
+    {
+      icon: <FaBuilding />,
+      label: "हमारे आंगनवाड़ी केंद्र ",
+      path: "/OurAwc",
+    },
+    {
       icon: <FaTasks />,
       label: "मांग दर्ज करें ",
       submenu: [
@@ -103,43 +100,40 @@ icon: <FaBuilding />,
           path: "/DemandPoshanFinal",
           icon: <FaFemale />,
         },
-         {
+        {
           label: "बाल पोषण",
           path: "/DemandBalPoshan",
           icon: <FaChild />,
         },
-         {
+        {
           label: "अंचल अमृत",
           path: "/DemandanchalAamrit",
           icon: <FaTint />,
         },
       ],
     },
-      
-     
-{
-       icon: <FaServer />,
-       label: "स्टॉक मैनेजर(वितरण) ",
-       submenu: [
+    {
+      icon: <FaServer />,
+      label: "स्टॉक मैनेजर(वितरण) ",
+      submenu: [
         {
           label: "महिला पोषण",
           path: "/DistributionMahilaPoshFinal",
           icon: <FaFemale />,
         },
-         {
+        {
           label: "बाल पोषण",
           path: "/DistributionBalPoshan",
           icon: <FaChild />,
         },
-         {
+        {
           label: "महालक्ष्मी किट",
           path: "/MahalakshmiKit",
           icon: <FaBox />,
         },
       ],
     },
-      
-     ];
+  ];
 
   //  Auto-close sidebar when switching to mobile or tablet
 

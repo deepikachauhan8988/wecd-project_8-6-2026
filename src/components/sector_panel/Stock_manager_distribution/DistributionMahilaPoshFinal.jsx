@@ -14,7 +14,29 @@ const DistributionMahilaPoshFinal = () => {
   
   const { user, api, uniqueId } = useAuth();
 
+useEffect(() => {
+  const handleResize = () => {
+    const mobile = window.innerWidth <= 768;
+    const tablet = window.innerWidth > 768 && window.innerWidth <= 992;
 
+    setIsMobile(mobile);
+    setIsTablet(tablet);
+
+    if (mobile) {
+      setSidebarOpen(false);
+    } else {
+      setSidebarOpen(true);
+    }
+  };
+
+  handleResize();
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);

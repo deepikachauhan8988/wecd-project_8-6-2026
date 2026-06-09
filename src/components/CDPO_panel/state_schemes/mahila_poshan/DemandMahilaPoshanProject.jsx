@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Spinner, Table, Button } from "react-bootstrap";
 
-import "../../../assets/css/supervisorleftnav.css";
+import "../../../../assets/css/supervisorleftnav.css";
+import CDPOLeftNav from "../../CDPOLeftNav";
+import CDPOHeader from "../../CDPOHeader";
+import { useAuth } from "../../../all_login/AuthContext";
 
-import { useAuth } from "../../all_login/AuthContext";
-import SectorHeader from "../SectorHeader";
-import SectorLeftNav from "../SectorLeftNav";
 
-const MahalakshmiKit = () => {
+const DemandMahilaPoshanProject = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
@@ -46,19 +46,19 @@ useEffect(() => {
 
   return (
     <div className="dashboard-container">
-      <SectorLeftNav
+      <CDPOLeftNav
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
         isMobile={isMobile}
         isTablet={isTablet}
       />
       <div className="main-content-dash">
-        <SectorHeader toggleSidebar={toggleSidebar} />
+        <CDPOHeader toggleSidebar={toggleSidebar} />
 
         <Container fluid className="dashboard-box mt-3">
           <div className="main-heading">
             <h3 className="mb-4 fw-bold">
-        Mahalakshmi Kit
+            DemandMahilaPoshanProject 
             </h3>
           </div>
 
@@ -71,4 +71,4 @@ useEffect(() => {
   );
 };
 
-export default MahalakshmiKit ;
+export default DemandMahilaPoshanProject;
