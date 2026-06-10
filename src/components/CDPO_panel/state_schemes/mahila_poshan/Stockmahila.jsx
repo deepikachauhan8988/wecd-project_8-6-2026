@@ -58,7 +58,7 @@ useEffect(() => {
         <Container fluid className="dashboard-box mt-3">
           <div className="main-heading">
             <h3 className="mb-4 fw-bold">
-          Stockmahila
+            DemandMahilaPoshanProject 
             </h3>
           </div>
 

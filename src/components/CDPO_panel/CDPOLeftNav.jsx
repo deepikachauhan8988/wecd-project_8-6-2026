@@ -133,19 +133,19 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
        submenu: [
           {
             label: "Demand",
-            path: "#",
+            path: "/MahalaxmiYear",
           },
           {
             label: "Distribution",
-            path: "#",
+            path: "/StockMahalakshmi",
           },
           {
             label: "Request",
-            path: "#",
+            path: "/MahalakshmiBen",
           },
           {
             label: "Beneficiary",
-            path: "#",
+            path: "/OurBenReq",
           },
         ],
       },
@@ -157,11 +157,11 @@ const CDPOLeftNav = ({ sidebarOpen, setSidebarOpen, isMobile, isTablet, onNavCli
        submenu: [
           {
             label: "Demand",
-            path: "#",
+            path: "/DemandAmritAnchalProject",
           },
           {
             label: "Distribution",
-            path: "#",
+            path: "/StockAnchal",
           },
         ],
       },
